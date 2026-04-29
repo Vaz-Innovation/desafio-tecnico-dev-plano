@@ -83,8 +83,15 @@ install_plugin_from_git https://github.com/valu-digital/wp-graphql-polylang.git 
 install_plugin_from_git https://github.com/valu-digital/wp-graphql-offset-pagination.git wp-graphql-offset-pagination
 install_plugin_from_git https://github.com/m-muhsin/wp-graphql-reading-time wp-graphql-reading-time
 install_plugin_from_git https://github.com/wp-graphql/wp-graphql-jwt-authentication wp-graphql-jwt-authentication
+install_plugin_from_git https://github.com/Manuel-Antunes/wp-graphql-federations wp-graphql-federations
 
 echo "✅ Plugins prontos!"
+
+# Activate local plugin if present
+if [ -d "/var/www/html/wp-content/plugins/wp-graphql-federations" ]; then
+  echo "   Activating local plugin: wp-graphql-federations"
+  wp plugin activate wp-graphql-federations --allow-root || true
+fi
 
 echo "🔗 Garantindo permalink como post name..."
 current_permalink="$(wp option get permalink_structure --allow-root 2>/dev/null || true)"
